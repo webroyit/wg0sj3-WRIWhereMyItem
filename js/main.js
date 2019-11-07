@@ -48,3 +48,20 @@ class UI{
 
 // excute the function as soon as the page load
 document.addEventListener('DOMContentLoaded', UI.displayItems);
+
+// add user input for item to the list
+document.querySelector('#item-form').addEventListener('submit', (e) => {
+    // prevent the actual submit
+    e.preventDefault();
+
+    // get the form value
+    const name = document.querySelector('#name').value;
+    const location = document.querySelector('#location').value;
+    const description = document.querySelector('#description').value;
+
+    // instatiate item
+    const item = new Item(name, location, description);
+
+    // update the table in the client
+    UI.addItemToList(item);
+});
