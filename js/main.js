@@ -74,14 +74,20 @@ document.querySelector('#item-form').addEventListener('submit', (e) => {
     const location = document.querySelector('#location').value;
     const description = document.querySelector('#description').value;
 
-    // instatiate item
-    const item = new Item(name, location, description);
+    // validation
+    if(name === '' === location === '' || description === ''){
+        alert('Please fill in all fields');
+    }
+    else{
+        // instatiate item
+        const item = new Item(name, location, description);
 
-    // update the table in the client
-    UI.addItemToList(item);
+        // update the table in the client
+        UI.addItemToList(item);
 
-    // clear the input fields
-    UI.clearForm();
+        // clear the input fields
+        UI.clearForm();
+    }
 });
 
 document.querySelector('#item-list').addEventListener('click', (e) => {
