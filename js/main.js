@@ -44,6 +44,12 @@ class UI{
         // add the row to list
         list.appendChild(row);
     }
+
+    static clearForm(){
+        document.querySelector('#name').value = '';
+        document.querySelector('#location').value = '';
+        document.querySelector('#description').value = '';
+    }
 }
 
 // excute the function as soon as the page load
@@ -64,4 +70,7 @@ document.querySelector('#item-form').addEventListener('submit', (e) => {
 
     // update the table in the client
     UI.addItemToList(item);
+
+    // clear the input fields
+    UI.clearForm();
 });
