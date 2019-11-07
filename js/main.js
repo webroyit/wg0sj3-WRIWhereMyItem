@@ -50,6 +50,15 @@ class UI{
         document.querySelector('#location').value = '';
         document.querySelector('#description').value = '';
     }
+
+    static deleteItem(target){
+        // check if the row was the class name called delete
+        if(target.classList.contains('delete')){
+            // remove the row
+            // first parentElement goes to td and second parentElement goes to tr
+            target.parentElement.parentElement.remove();
+        }
+    }
 }
 
 // excute the function as soon as the page load
@@ -73,4 +82,8 @@ document.querySelector('#item-form').addEventListener('submit', (e) => {
 
     // clear the input fields
     UI.clearForm();
+});
+
+document.querySelector('#item-list').addEventListener('click', (e) => {
+    UI.deleteItem(e.target);
 });
