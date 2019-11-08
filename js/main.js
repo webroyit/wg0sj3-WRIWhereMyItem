@@ -78,6 +78,31 @@ class UI{
     }
 }
 
+// handles storage
+// local storage can only store string, no object
+class Store{
+    static getItems(){
+        let items;
+        if(localStorage.getItem('items') === null){
+            items = [];
+        }
+        else{
+           
+            items = JSON.parse(localStorage.getItem('items'));
+        }
+        return items;
+    }
+
+    static addItem(item){
+        const items = Store.getItems();
+
+        items.push(item);
+
+         // convert the js object into string
+        localStorage.setItem('items', JSON.stringify(items));
+    }
+}
+
 // excute the function as soon as the page load
 document.addEventListener('DOMContentLoaded', UI.displayItems);
 
