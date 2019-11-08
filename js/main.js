@@ -45,6 +45,20 @@ class UI{
         list.appendChild(row);
     }
 
+    static showAlert(message, classname){
+        // create the div
+        const alertDiv = document.createElement('div');
+        // add bootstrap classes
+        alertDiv.className = `alert alert-${classname}`;
+        // add the text to the div
+        alertDiv.appendChild(document.createTextNode(message));
+        // target the element
+        const container = document.querySelector('.container');
+        const form = document.querySelector('#item-form');
+        // insert the div to the dom
+        container.insertBefore(alertDiv, form);
+    }
+
     static clearForm(){
         document.querySelector('#name').value = '';
         document.querySelector('#location').value = '';
