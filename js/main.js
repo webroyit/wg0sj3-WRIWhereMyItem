@@ -57,6 +57,9 @@ class UI{
         const form = document.querySelector('#item-form');
         // insert the div to the dom
         container.insertBefore(alertDiv, form);
+
+        // make the alert message vanish in 3 secons
+        setTimeout(() => document.querySelector('.alert').remove(), 3000);
     }
 
     static clearForm(){
@@ -90,7 +93,8 @@ document.querySelector('#item-form').addEventListener('submit', (e) => {
 
     // validation
     if(name === '' === location === '' || description === ''){
-        alert('Please fill in all fields');
+        // show error message
+        UI.showAlert('Please fill in all fields', 'danger');
     }
     else{
         // instatiate item
@@ -99,6 +103,9 @@ document.querySelector('#item-form').addEventListener('submit', (e) => {
         // update the table in the client
         UI.addItemToList(item);
 
+        // show success message
+        UI.showAlert('Item Added', 'success');
+
         // clear the input fields
         UI.clearForm();
     }
@@ -106,4 +113,7 @@ document.querySelector('#item-form').addEventListener('submit', (e) => {
 
 document.querySelector('#item-list').addEventListener('click', (e) => {
     UI.deleteItem(e.target);
+
+    // show delete message
+    UI.showAlert('Item Removed', 'success');
 });
