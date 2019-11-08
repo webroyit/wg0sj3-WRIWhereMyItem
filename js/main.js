@@ -10,7 +10,7 @@ class Item{
 // UI class
 class UI{
     static displayItems(){
-        const items = storedItems;
+        const items = Store.getItems();
 
         items.forEach((item) => UI.addItemToList(item));
     }
@@ -128,6 +128,9 @@ document.querySelector('#item-form').addEventListener('submit', (e) => {
         // update the table in the client
         UI.addItemToList(item);
 
+        // add item to local storage
+        Store.addItem(item);
+
         // show success message
         UI.showAlert('Item Added', 'success');
 
@@ -137,7 +140,11 @@ document.querySelector('#item-form').addEventListener('submit', (e) => {
 });
 
 document.querySelector('#item-list').addEventListener('click', (e) => {
+    // remove item from UI
     UI.deleteItem(e.target);
+
+    // remove item from local storage
+    Store.removeItem(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
 
     // show delete message
     UI.showAlert('Item Removed', 'success');
