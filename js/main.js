@@ -10,20 +10,6 @@ class Item{
 // UI class
 class UI{
     static displayItems(){
-        // for testing
-        const storedItems = [
-            {
-                name: "Pen",
-                location: "In the kitchen drawer",
-                description: "Blue Pen"
-            },
-            {
-                name: "Candy",
-                location: "In the green shelf",
-                description: "Yummy Candy"
-            }
-        ];
-
         const items = storedItems;
 
         items.forEach((item) => UI.addItemToList(item));
@@ -97,6 +83,20 @@ class Store{
         const items = Store.getItems();
 
         items.push(item);
+
+         // convert the js object into string
+        localStorage.setItem('items', JSON.stringify(items));
+    }
+
+    static removeItem(name){
+        const items = Store.getItems();
+
+        items.forEach((item, index) => {
+            // remove the item
+            if(item.name === name){
+                items.splice(index, 1);
+            }
+        })
 
          // convert the js object into string
         localStorage.setItem('items', JSON.stringify(items));
